@@ -13,8 +13,18 @@ const Create = () => {
   const [price,setPrice] = useState('');
   const [ image,setImage] = useState(null);
   const date = new Date()
+  const [error,setError]=useState({})
+
+  const datas={
+    name,category,price,image
+  }
    
   const handleSubmit =()=>{
+
+    const errors=  validedata(datas)
+    setError(errors)
+
+    if (Object.keys(errors).length==0) {
     firebase.storage().ref(`/image/${image.name}`).put(image).then(({ref})=>{
       ref.getDownloadURL().then((url)=>{
         console.log(url);
@@ -29,6 +39,25 @@ const Create = () => {
         history.push('/')
       })
     })
+  }
+  }
+
+  const validedata=(data)=>{
+    const error = {};
+    if (!data.name) {
+      error.name = "name required"
+    }
+    if (!data.category) {
+      error.category = "category required"
+    }
+    if (!data.price) {
+      error.price = "price required"
+    }
+    if (!data.image) {
+      error.image = "image required"
+    }
+
+    return error
   }
 
   return (
@@ -48,6 +77,7 @@ const Create = () => {
               name="Name"
               defaultValue="John"
             />
+            <p>{error.name}</p>
             <br />
             <label htmlFor="fname">Category</label>
             <br />
@@ -60,6 +90,7 @@ const Create = () => {
               name="category"
               defaultValue="John"
             />
+            <p>{error.category}</p>
             <br />
             <label htmlFor="fname">Price</label>
             <br />
@@ -67,11 +98,12 @@ const Create = () => {
              value={price}
              onChange={(e)=> setPrice(e.target.value)}
             id="fname" name="Price" />
+            <p>{error.price}</p>
             <br />
           
           <br />
           <img  alt="Posts" width="200px" height="200px" src={image ? URL.createObjectURL(image) : ''}></img>
-        
+          <p>{error.image}</p>
             <br />
             <input 
             

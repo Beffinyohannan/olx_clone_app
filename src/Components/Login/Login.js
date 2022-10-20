@@ -11,18 +11,26 @@ function Login() {
   const [password,setpassword] =useState('');
   const {firebase} = useContext(FirebaseContext)
   const history = useHistory()
+  const [loginError,setLoginError]=useState({})
+
 
 
 
   const handleLogin =(e)=>{
     e.preventDefault()
+     const loginErr={}
+
+
     firebase.auth().signInWithEmailAndPassword(email,password).then(()=>{
       // alert('Logged In')
       history.push('/')
     }).catch((error)=>{
-      alert(error.message)
+      // alert(error.message)
+      loginErr.valide=error.message
+      setLoginError(loginErr)
     })
   }
+
   return (
     <div>
       <div className="loginParentDiv">
@@ -37,7 +45,8 @@ function Login() {
             onChange ={(e)=>setEmail(e.target.value)}
             id="fname"
             name="email"
-            defaultValue="John"
+            // defaultValue="John"
+            
           />
           <br />
           <label htmlFor="lname">Password</label>
@@ -48,9 +57,12 @@ function Login() {
             onChange ={(e)=>setpassword(e.target.value)}
             id="lname"
             name="password"
-            defaultValue="Doe"
+            // defaultValue="Doe"
+           
           />
+          
           <br />
+          <p>{loginError.valide}</p>
           <br />
           <button>Login</button>
         </form>
