@@ -105,7 +105,7 @@ export default function Signup() {
             defaultValue="John"
 
           />
-          <p>{error.username}</p>
+          <p className='error'>{error.username}</p>
           <br />
           <label htmlFor="fname">Email</label>
           <br />
@@ -118,7 +118,7 @@ export default function Signup() {
             name="email"
             defaultValue="John"
           />
-          <p>{error.email}</p>
+          <p className='error'>{error.email}</p>
           <br />
           <label htmlFor="lname">Phone</label>
           <br />
@@ -131,7 +131,7 @@ export default function Signup() {
             name="phone"
             defaultValue="Doe"
           />
-          <p>{error.phone}</p>
+          <p className='error'>{error.phone}</p>
           <br />
           <label htmlFor="lname">Password</label>
           <br />
@@ -144,7 +144,7 @@ export default function Signup() {
             name="password"
             defaultValue="Doe"
           />
-          <p>{error.password}</p>
+          <p className='error'>{error.password}</p>
           <br />
           <br />
           <button>Signup</button>

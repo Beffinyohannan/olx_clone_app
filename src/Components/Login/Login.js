@@ -62,7 +62,7 @@ function Login() {
           />
           
           <br />
-          <p>{loginError.valide}</p>
+          <p className='error'>{loginError.valide}</p>
           <br />
           <button>Login</button>
         </form>

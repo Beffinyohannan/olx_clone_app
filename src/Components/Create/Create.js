@@ -77,7 +77,7 @@ const Create = () => {
               name="Name"
               defaultValue="John"
             />
-            <p>{error.name}</p>
+            <p className='error'>{error.name}</p>
             <br />
             <label htmlFor="fname">Category</label>
             <br />
@@ -90,7 +90,7 @@ const Create = () => {
               name="category"
               defaultValue="John"
             />
-            <p>{error.category}</p>
+            <p className='error'>{error.category}</p>
             <br />
             <label htmlFor="fname">Price</label>
             <br />
@@ -98,12 +98,12 @@ const Create = () => {
              value={price}
              onChange={(e)=> setPrice(e.target.value)}
             id="fname" name="Price" />
-            <p>{error.price}</p>
+            <p className='error'>{error.price}</p>
             <br />
           
           <br />
           <img  alt="Posts" width="200px" height="200px" src={image ? URL.createObjectURL(image) : ''}></img>
-          <p>{error.image}</p>
+          <p className='error'>{error.image}</p>
             <br />
             <input 
             
